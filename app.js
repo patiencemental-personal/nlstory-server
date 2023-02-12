@@ -1,11 +1,18 @@
 import cors from 'cors';
 import express from 'express';
 import keywordNoteRouter from './router/keywordNote.js';
+import { config } from './lib/config.js';
 
 const PORT = process.env.PORT || 8080
 
 const app = express();
-app.use(cors());
+
+const corsOption = {
+  origin: config.cors.allowedOrigin,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOption));
 app.use(express.json());
 
 app.use('/keywordNote', keywordNoteRouter);
