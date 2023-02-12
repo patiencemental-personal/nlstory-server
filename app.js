@@ -2,8 +2,9 @@ import cors from 'cors';
 import express from 'express';
 import keywordNoteRouter from './router/keywordNote.js';
 
-const app = express();
+const PORT = process.env.PORT || 8080
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -18,4 +19,4 @@ app.use((error, req, res, next) => {
   res.sendStatus(500);
 });
 
-app.listen(8080);
+app.listen(PORT);
