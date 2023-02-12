@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import config from "../lib/config.js";
+import { config } from "../lib/config.js";
 
 /**
  * @see https://developers.notion.com/reference/intro
