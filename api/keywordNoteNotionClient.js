@@ -23,7 +23,6 @@ export async function getBlocks(blockId) {
 }
 
 export async function updatePageProperties(pageId, properties) {
-  console.log(properties)
   const response = await notion.pages.update({
     page_id: pageId,
     properties,

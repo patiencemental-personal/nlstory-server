@@ -9,6 +9,7 @@ const app = express();
 
 const corsOption = {
   origin: config.cors.allowedOrigin,
+  credentials: process.env.NODE_ENV === 'production',
   optionsSuccessStatus: 200,
 };
 
