@@ -4,8 +4,8 @@ import { config } from "../lib/config.js";
 /**
  * @see https://developers.notion.com/reference/intro
  */
-const notion = new Client({ auth: config.NOTION_API_KEY_KEYWORD_NOTE });
-const databaseId = config.NOTION_DB_ID_KEYWORD_NOTE;
+const notion = new Client({ auth: config.notion.NOTION_API_KEY_KEYWORD_NOTE });
+const databaseId = config.notion.NOTION_DB_ID_KEYWORD_NOTE;
 
 export async function getPages(filter, sorts) {
   const params = { database_id: databaseId };
