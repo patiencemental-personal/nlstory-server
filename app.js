@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080
 const app = express();
 
 const corsOption = {
-  origin: config.cors.allowedOrigin,
+  origin: config.cors.allowedOrigins,
   credentials: process.env.NODE_ENV === 'production',
   optionsSuccessStatus: 200,
 };
