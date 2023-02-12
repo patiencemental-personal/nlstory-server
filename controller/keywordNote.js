@@ -7,11 +7,11 @@ import BulletedItemTreeNode from '../data/notion/bulletedItemTreeNode.js';
  * @return {Array} 페이지(키워드 노트)들의 id, properties들을 반환한다
  */
 export async function getDailyKeywordNote(req, res) {
-  const strToday = format(new Date(), 'yyyy-MM-dd');
+  const formatedToday = format(new Date(), 'yyyy-MM-dd');
   const filter = {
     and: [
       { property: 'studying', checkbox: { equals: true, }, },
-      { property: 'nextReviewDate', date: { on_or_before: strToday, }, },
+      { property: 'nextReviewDate', date: { on_or_before: formatedToday, }, },
     ],
   };
   const sorts = [
@@ -59,4 +59,15 @@ export async function getKeywordNoteDetail(req, res) {
   }
   
   res.status(200).json(keyBlockTreeRootNodeMap);
+}
+
+
+/**
+ * 개별 페이지(키워드 노트) 프로퍼티 수정
+ */
+export async function updateKeywordNoteProperties(req, res) {
+  const { pageId } = req.params;
+  const { properties } = req.body;
+  const response = await keywordNoteNotionClient.updatePageProperties(pageId, properties);
+  res.status(200).json(response)
 }

@@ -22,14 +22,11 @@ export async function getBlocks(blockId) {
   return response;
 }
 
-export async function updatePageProperties(pageId) {
+export async function updatePageProperties(pageId, properties) {
+  console.log(properties)
   const response = await notion.pages.update({
     page_id: pageId,
-    properties: {
-      'reviewCnt': {
-        number: 42,
-      },
-    },
+    properties,
   });
   return response;
 }
