@@ -4,7 +4,6 @@ import BulletedItemTreeNode from '../data/notion/bulletedItemTreeNode.js';
 
 /**
  * 오늘 공부해야 할 키워드 노트 리스트 조회
- * @return {Array} 페이지(키워드 노트)들의 id, properties들을 반환한다
  */
 export async function getDailyKeywordNote(req, res) {
   const formatedToday = format(new Date(), 'yyyy-MM-dd');
@@ -21,7 +20,7 @@ export async function getDailyKeywordNote(req, res) {
     { property: 'title', direction: 'ascending', },
   ];
   const response = await keywordNoteNotionClient.getPages(filter, sorts);
-  const pages = response.results.map(({ id, properties }) => { return { id, properties }; });
+  const pages = response.results.map(({ id, url, properties }) => { return { id, url, properties }; });
   res.status(200).json(pages);
 }
 
