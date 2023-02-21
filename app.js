@@ -28,6 +28,14 @@ const sessionOption = {
     maxAge: 24 * 60 * 60 * 1000,                   // 24시간
     httpOnly: true,                                // 쿠키에 JS에서 접근 불가
     secure: process.env.NODE_ENV === 'production', // HTTPS만 접근 가능
+    /**
+     * @TODO 추후 session 베이스에서 JWT로 변경
+     *  - Chrome80에서 sameSite 기본 값을 lax로 변경
+     *  - 브라우저에서 기본 설정을 변경한 것은 크로스 도메인간 중요한 정보 유지는 CSRF 가능성이 있는 쿠키가 아닌 다른 안전한 방식으로 하기를 권장하기 때문
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+     * @see https://ifuwanna.tistory.com/223
+     */
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 로컬 개발 환경에서는 lax, 운영 환경에선 none(cross-site)
   },
   store: new MemoryStore({                 // 세션을 저장할 스토어
     checkPeriod: 24 * 60 * 60 * 1000,      // 24시간 마다 저장소에 만료된 세션 체크 및 제거
