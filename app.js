@@ -6,6 +6,7 @@ import { config } from './lib/config.js';
 import session from 'express-session'; 
 import createMemoryStore from 'memorystore';
 
+const app = express();
 
 // options
 const PORT = process.env.PORT || 8080
@@ -22,6 +23,9 @@ const corsOption = {
 /**
  * @see https://github.com/expressjs/session#sessionoptions
  */
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+}
 const MemoryStore = createMemoryStore(session);
 const sessionOption = {
   cookie: {
@@ -48,8 +52,6 @@ const sessionOption = {
 
 
 // middlewares
-const app = express();
-
 app.use(cors(corsOption));
 app.use(session(sessionOption));
 app.use(express.json());
