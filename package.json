@@ -25,11 +25,14 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "express-session": "^1.17.3",
+    "memorystore": "^1.6.7",
     "node-fetch": "^3.3.0"
   }
 }
