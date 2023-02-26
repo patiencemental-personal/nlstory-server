@@ -20,7 +20,7 @@ export async function login(req, res) {
       res.status(201).json(data);
     });
   } else {
-    res.status(401).json({ message: '올바르지 못한 비밀번호 입니다.' });
+    res.status(401).json({ message: '유효하지 않은 인증 번호 입니다.' });
   }
 }
 
